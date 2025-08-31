@@ -52,12 +52,18 @@ public class Main {
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
-        crw.getListaRecursos().add("https://learn.microsoft.com/pt-br/cpp/?view=msvc-170");
         crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
-        crw.getListaRecursos().add("https://google.github.io/styleguide/cppguide.html");
+        crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
+        crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
+        ArrayList<String> urls = crw.getListaRecursos(); // pega as URLs
 
+        int indice = 0; // contador para acompanhar a URL correspondente
         for (String codigoHTML : listaCodigos) {
+
+            String url = urls.get(indice++);    
+            System.out.println("\n===== Página: " + url + " =====\n");
+
             //mapa do alfabeto
             char[] alfabeto = new char[63];
             // 0-9
@@ -290,9 +296,5 @@ public class Main {
                 System.out.println (p);
             }
         }
-
     }
-
-
-
 }
