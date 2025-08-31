@@ -13,12 +13,12 @@ O objetivo é exercitar conceitos de **linguagens formais e expressões regulare
 
 1. Abra o terminal e navegue até a pasta `src`:
 
-cd "c:\Users\User\Documents\GitHub\RegexWebSearch\src\"
+  cd "c:\Users\User\Documents\GitHub\RegexWebSearch\src\"
 
 2. Compile os arquivos Java:
 
-javac buscapadraoweb\Main.java buscaweb\CapturaRecursosWeb.java
+  javac buscapadraoweb\Main.java buscaweb\CapturaRecursosWeb.java
 
 3. Execute o programa:
 
-java buscapadraoweb.Main
+  java buscapadraoweb.Main
