@@ -57,7 +57,7 @@ public class Main {
         crw.getListaRecursos().add("https://google.github.io/styleguide/cppguide.html");
         crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
-        ArrayList<String> urls = crw.getListaRecursos(); // pega as URLs
+        ArrayList<String> urls = crw.getListaRecursos();
 
         int indice = 0; // contador para acompanhar a URL correspondente
         for (String codigoHTML : listaCodigos) {
@@ -193,8 +193,8 @@ public class Main {
             // lista de palavras reconhecidas
             ArrayList<String> palavras_reconhecidas = new ArrayList();
 
-
             String palavra = "";
+
 
             //varre o código-fonte de um código
             for (int i=0; i<codigoHTML.length(); i++){
@@ -230,7 +230,6 @@ public class Main {
                     }
                 }
             }
-
 
             //foreach no Java para exibir todas as palavras reconhecidas
             for (String p: palavras_reconhecidas){
