@@ -11,10 +11,15 @@ O objetivo é exercitar conceitos de **linguagens formais e expressões regulare
 
 ## Estrutura do Projeto
 RegexWebSearch
+
 └─ src
+
 ├─ buscapadraoweb
+
 │ └─ Main.java
+
 └─ buscaweb
+
 └─ CapturaRecursosWeb.java
 
 - `Main.java`: contém a implementação do AFD e a lógica para percorrer o HTML e extrair palavras.  
@@ -31,8 +36,10 @@ cd "c:\Users\User\Documents\GitHub\RegexWebSearch\src\"
 
 2. Compile os arquivos Java:
 
+```powershell
 javac buscapadraoweb\Main.java buscaweb\CapturaRecursosWeb.java
 
 3. Execute o programa:
 
+```powershell
 java buscapadraoweb.Main
