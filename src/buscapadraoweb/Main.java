@@ -52,7 +52,7 @@ public class Main {
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
-        crw.getListaRecursos().add("https://cplusplus.com/doc/tutorial/variables/");
+        crw.getListaRecursos().add("https://google.github.io/styleguide/cppguide.html");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
 
         String codigoHTML = listaCodigos.get(0);
