@@ -30,7 +30,9 @@ RegexWebSearch
 cd "c:\Users\User\Documents\GitHub\RegexWebSearch\src\"
 
 2. Compile os arquivos Java:
+
 javac buscapadraoweb\Main.java buscaweb\CapturaRecursosWeb.java
 
 3. Execute o programa:
+
 java buscapadraoweb.Main
