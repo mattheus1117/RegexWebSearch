@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Main {
     
     // variável MAX_LEN
-    public static final int MAX_LEN = 10;
+    public static final int MAX_LEN = 31;
 
     // busca char em vetor e retorna indice
     public static int get_char_ref (char[] vet, char ref ){
@@ -55,8 +55,8 @@ public class Main {
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
-        //crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
-        //crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
+        crw.getListaRecursos().add("https://learn.microsoft.com/pt-br/cpp/?view=msvc-170");
+        crw.getListaRecursos().add("https://google.github.io/styleguide/cppguide.html");
         crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
         ArrayList<String> urls = crw.getListaRecursos(); // pega as URLs
@@ -138,93 +138,52 @@ public class Main {
             alfabeto[62] = '_';
 
 
-            //mapa de estados
-            String[] estados = new String[MAX_LEN + 1];
-            for (int k = 0; k <= MAX_LEN; k++) {
+            // garante que MAX_LEN não ultrapasse 31
+            int MaxLenLimit = Math.min(MAX_LEN, 31);
+
+            // mapa de estados
+            String[] estados = new String[MaxLenLimit + 1];
+            for (int k = 0; k <= MaxLenLimit; k++) {
                 estados[k] = "q" + k;
             }
+
             String estado_inicial = "q0";
 
             //estados finais
             String[] estados_finais = new String[1];
-            estados_finais[0] = "q" + MAX_LEN;
+            estados_finais[0] = "q" + MaxLenLimit;
             
 
             //tabela de transição de AFD para reconhecimento números de dois dígitos
-            int[][] matriz = new int[MAX_LEN + 1][63];
+            int[][] matriz = new int[MaxLenLimit + 1][63];
 
-            //transições de q0
-            // A-Z
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'A')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'B')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'C')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'D')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'E')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'F')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'G')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'H')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'I')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'J')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'K')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'L')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'M')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'N')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'O')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'P')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'Q')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'R')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'S')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'T')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'U')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'V')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'W')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'X')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'Y')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'Z')] = get_string_ref(estados, "q1");
-            // a-z
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'a')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'b')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'c')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'd')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'e')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'f')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'g')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'h')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'i')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'j')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'k')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'l')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'm')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'n')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'o')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'p')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'q')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'r')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 's')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 't')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'u')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'v')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'w')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'x')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'y')] = get_string_ref(estados, "q1");
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'z')] = get_string_ref(estados, "q1");
-            // _
-            matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, '_')] = get_string_ref(estados, "q1");
 
-            //transições de q1 até q31
-            for (int i = 1; i < MAX_LEN; i++) {
+            // transições de q0 até qMAX_LEN
+            for (int i = 0; i < MaxLenLimit; i++) {
+
+                for (int j = 0; j < 63; j++) {
+                    matriz[i][j] = -1;
+                }
+
                 int from = get_string_ref(estados, "q" + i);
                 int to = get_string_ref(estados, "q" + (i + 1));
 
-                for (char c = '0'; c <= '9'; c++) {
-                    matriz[from][get_char_ref(alfabeto, c)] = to;
+                // q0 não aceita números
+                if (i != 0) {
+                    for (char c = '0'; c <= '9'; c++) {
+                        matriz[from][get_char_ref(alfabeto, c)] = to;
+                    }
                 }
+
+                // letras maiúsculas
                 for (char c = 'A'; c <= 'Z'; c++) {
                     matriz[from][get_char_ref(alfabeto, c)] = to;
                 }
+                // letras minúsculas
                 for (char c = 'a'; c <= 'z'; c++) {
                     matriz[from][get_char_ref(alfabeto, c)] = to;
                 }
+                // underscore
                 matriz[from][get_char_ref(alfabeto, '_')] = to;
             }
 
@@ -260,7 +219,7 @@ public class Main {
                     
                 }else{
                     // limita palavra enquanto é construída
-                    if (palavra.length() < MAX_LEN) {
+                    if (palavra.length() < MaxLenLimit) {
                         palavra += codigoHTML.charAt(i);
                     } else {
                         // se já atingiu MAX_LEN, força reset do estado
@@ -276,6 +235,9 @@ public class Main {
             for (String p: palavras_reconhecidas){
                 System.out.println (p);
             }
+        
+        System.out.println ("\n");
+
         }
     }
 }
