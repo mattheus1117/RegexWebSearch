@@ -13,6 +13,9 @@ import java.util.ArrayList;
  * @author Santiago
  */
 public class Main {
+    
+    // variável MAX_LEN
+    public static final int MAX_LEN = 10;
 
     // busca char em vetor e retorna indice
     public static int get_char_ref (char[] vet, char ref ){
@@ -52,8 +55,8 @@ public class Main {
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
-        crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
-        crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
+        //crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
+        //crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
         crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
         ArrayList<String> urls = crw.getListaRecursos(); // pega as URLs
@@ -136,49 +139,20 @@ public class Main {
 
 
             //mapa de estados
-            String[] estados = new String[32];
-            estados[0] = "q0";
-            estados[1] = "q1";
-            estados[2] = "q2";
-            estados[3] = "q3";
-            estados[4] = "q4";
-            estados[5] = "q5";
-            estados[6] = "q6";
-            estados[7] = "q7";
-            estados[8] = "q8";
-            estados[9] = "q9";
-            estados[10] = "q10";
-            estados[11] = "q11";
-            estados[12] = "q12";
-            estados[13] = "q13";
-            estados[14] = "q14";
-            estados[15] = "q15";
-            estados[16] = "q16";
-            estados[17] = "q17";
-            estados[18] = "q18";
-            estados[19] = "q19";
-            estados[20] = "q20";
-            estados[21] = "q21";
-            estados[22] = "q22";
-            estados[23] = "q23";
-            estados[24] = "q24";
-            estados[25] = "q25";
-            estados[26] = "q26";
-            estados[27] = "q27";
-            estados[28] = "q28";
-            estados[29] = "q29";
-            estados[30] = "q30";
-            estados[31] = "q31";
-
-
+            String[] estados = new String[MAX_LEN + 1];
+            for (int k = 0; k <= MAX_LEN; k++) {
+                estados[k] = "q" + k;
+            }
             String estado_inicial = "q0";
 
             //estados finais
             String[] estados_finais = new String[1];
-            estados_finais[0] = "q31";
+            estados_finais[0] = "q" + MAX_LEN;
+            
 
             //tabela de transição de AFD para reconhecimento números de dois dígitos
-            int[][] matriz = new int[32][63];
+            int[][] matriz = new int[MAX_LEN + 1][63];
+
             //transições de q0
             // A-Z
             matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'A')] = get_string_ref(estados, "q1");
@@ -238,7 +212,7 @@ public class Main {
             matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, '_')] = get_string_ref(estados, "q1");
 
             //transições de q1 até q31
-            for (int i = 1; i < 31; i++) {
+            for (int i = 1; i < MAX_LEN; i++) {
                 int from = get_string_ref(estados, "q" + i);
                 int to = get_string_ref(estados, "q" + (i + 1));
 
@@ -285,8 +259,15 @@ public class Main {
                     palavra = "";
                     
                 }else{
-                    //se houver transição válida, adiciona caracter a palavra
-                    palavra += codigoHTML.charAt(i);
+                    // limita palavra enquanto é construída
+                    if (palavra.length() < MAX_LEN) {
+                        palavra += codigoHTML.charAt(i);
+                    } else {
+                        // se já atingiu MAX_LEN, força reset do estado
+                        estado = get_string_ref(estados, estado_inicial);
+                        palavras_reconhecidas.add(palavra);
+                        palavra = "";
+                    }
                 }
             }
 
