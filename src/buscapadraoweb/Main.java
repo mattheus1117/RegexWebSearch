@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Main {
     
-    // variável MAX_LEN
-    public static final int MAX_LEN = 31;
+    // comprimento das palavras reconhecidas
+    public static final int LENGTH = 31;
 
     // busca char em vetor e retorna indice
     public static int get_char_ref (char[] vet, char ref ){
@@ -36,8 +36,6 @@ public class Main {
         }
         return -1;
     }
-
-    
 
     //retorna o próximo estado, dado o estado atual e o símbolo lido
     public static int proximo_estado(char[] alfabeto, int[][] matriz,int estado_atual,char simbolo){
@@ -138,12 +136,12 @@ public class Main {
             alfabeto[62] = '_';
 
 
-            // garante que MAX_LEN não ultrapasse 31
-            int MaxLenLimit = Math.min(MAX_LEN, 31);
+            // garante que LENGTH não ultrapasse 31
+            int MAX_LEN = Math.min(LENGTH, 31);
 
             // mapa de estados
-            String[] estados = new String[MaxLenLimit + 1];
-            for (int k = 0; k <= MaxLenLimit; k++) {
+            String[] estados = new String[MAX_LEN + 1];
+            for (int k = 0; k <= MAX_LEN; k++) {
                 estados[k] = "q" + k;
             }
 
@@ -151,20 +149,21 @@ public class Main {
 
             //estados finais
             String[] estados_finais = new String[1];
-            estados_finais[0] = "q" + MaxLenLimit;
+            estados_finais[0] = "q" + MAX_LEN;
             
 
             //tabela de transição de AFD para reconhecimento números de dois dígitos
-            int[][] matriz = new int[MaxLenLimit + 1][63];
+            int[][] matriz = new int[MAX_LEN + 1][63];
 
 
-            // transições de q0 até qMAX_LEN
-            for (int i = 0; i < MaxLenLimit; i++) {
+            // transições de q0 até qLENGTH
+            for (int i = 0; i < MAX_LEN; i++) {
 
                 for (int j = 0; j < 63; j++) {
                     matriz[i][j] = -1;
                 }
 
+                // índice do estado atual e do próximo estado na matriz
                 int from = get_string_ref(estados, "q" + i);
                 int to = get_string_ref(estados, "q" + (i + 1));
 
@@ -188,8 +187,10 @@ public class Main {
             }
 
 
+            // estado atual do autômato e último estado lido
             int estado = get_string_ref (estados, estado_inicial);
             int estado_anterior = -1;
+            // lista de palavras reconhecidas
             ArrayList<String> palavras_reconhecidas = new ArrayList();
 
 
@@ -219,10 +220,10 @@ public class Main {
                     
                 }else{
                     // limita palavra enquanto é construída
-                    if (palavra.length() < MaxLenLimit) {
+                    if (palavra.length() < MAX_LEN) {
                         palavra += codigoHTML.charAt(i);
                     } else {
-                        // se já atingiu MAX_LEN, força reset do estado
+                        // se já atingiu LENGTH, força reset do estado
                         estado = get_string_ref(estados, estado_inicial);
                         palavras_reconhecidas.add(palavra);
                         palavra = "";
@@ -237,7 +238,6 @@ public class Main {
             }
         
         System.out.println ("\n");
-
         }
     }
 }
