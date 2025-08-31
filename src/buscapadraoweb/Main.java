@@ -52,6 +52,8 @@ public class Main {
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
+        crw.getListaRecursos().add("https://learn.microsoft.com/pt-br/cpp/?view=msvc-170");
+        crw.getListaRecursos().add("https://www.w3schools.com/cpp/cpp_variables.asp");
         crw.getListaRecursos().add("https://google.github.io/styleguide/cppguide.html");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
 
