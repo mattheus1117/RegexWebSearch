@@ -50,6 +50,7 @@ public class Main {
     /*
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
@@ -152,7 +153,7 @@ public class Main {
             estados_finais[0] = "q" + MAX_LEN;
             
 
-            //tabela de transição de AFD para reconhecimento números de dois dígitos
+            //tabela de transição de AFD
             int[][] matriz = new int[MAX_LEN + 1][63];
 
 
